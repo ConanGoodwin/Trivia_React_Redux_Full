@@ -8,6 +8,7 @@ import Header from '../components/Header';
 import Timer from '../components/Timer';
 import './style/Game.css';
 import BtnRespText from '../components/BtnRespText';
+import IAHelp from '../components/IAHelp';
 
 const NORMAL_BTN = 'inicial';
 const CORRECT_BTN = 'correct';
@@ -30,6 +31,8 @@ class Game extends Component {
       wrongClass: NORMAL_BTN,
       correctClass: NORMAL_BTN,
       indexResp: -1,
+      // eslint-disable-next-line react/no-unused-state
+      question: '',
     };
   }
 
@@ -125,6 +128,7 @@ class Game extends Component {
     const START_INDEX = -1;
     const ERROR_API_CODE = 3;
     let indexWrongAnswer = START_INDEX;
+
     return (
       <main>
         <Header />
@@ -149,6 +153,13 @@ class Game extends Component {
                     this.decodeEntity(results[indexQuestion].question)
                   }
                 </p>
+                {(!isAnswer) && (
+                  <IAHelp
+                    resposta={
+                      this.decodeEntity(results[indexQuestion].question)
+                    }
+                  />
+                )}
                 <div data-testid="answer-options">
                   {
                     randomAnswer.map((item, index) => {

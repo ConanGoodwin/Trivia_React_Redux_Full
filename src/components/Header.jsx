@@ -10,7 +10,7 @@ class Header extends React.Component {
 
     return (
       <header className="cabecalho">
-        <figure className="image is-128x128">
+        <figure className="image ">
           <img
             src={ `https://www.gravatar.com/avatar/${md5(email).toString()}` }
             alt="avatar"
