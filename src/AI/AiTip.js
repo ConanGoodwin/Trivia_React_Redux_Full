@@ -8,8 +8,14 @@ export default class AiTip {
   }
 
   static async run(inputQuestion) {
-    // const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-    const genAI = new GoogleGenerativeAI('AIzaSyB0QV39FfwRybFwEsJcs9vGTEywpQc1dbQ');
+    const apiKey = process.env.REACT_APP_GEMINI_API_KEY;
+
+    if (!apiKey) {
+      console.error('Erro: Variável de ambiente GEMINI_API_KEY não definida.');
+      return 'Erro ao obter dica da IA. Chave API não configurada.'; // Retorna uma mensagem de erro
+    }
+
+    const genAI = new GoogleGenerativeAI(apiKey);
     const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash' });
 
     const prompt = `I am a quizz app.
